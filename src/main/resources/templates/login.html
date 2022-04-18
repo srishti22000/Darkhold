@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Log in: Darkhold classroom quiz experience</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/styles/login.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function logMeIn() {
+            document.getElementById('username').value = document.getElementById('loginUsername').value;
+            document.getElementById('password').value = document.getElementById('loginPassword').value;
+            // we should have a better way to do this
+            document.forms[0].action="/logme";
+            document.forms[0].submit();
+        }
+
+        function signUp() {
+            document.getElementById('username').value = document.getElementById('sign_username').value;
+            document.getElementById('password').value = document.getElementById('sign_password').value;
+            document.forms[0].action="/registration";
+            document.forms[0].submit();
+        }
+    </script>
+</head>
+<body>
+<form action="#" th:action="@{/login}" method="post">
+<div class="container login-container">
+    <div class="row">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input type="hidden" name="username" id="username" />
+        <input type="hidden" name="password" id="password"/>
+        <div class="col-md-6 login-form-1">
+            <h3>Sign up</h3>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" name="sign_username" id="sign_username" class="form-control" placeholder="Your Username *" value="" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="sign_password" id="sign_password" class="form-control" placeholder="Your Password *" value="" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirm password" value="" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="button" class="btnSubmit" value="Sign up" onclick="signUp();"/>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 login-form-2">
+            <h3>Login</h3>
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" name="loginUsername"  id="loginUsername" class="form-control" placeholder="Your Username *" value="" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="loginPassword" id="loginPassword" class="form-control" placeholder="Your Password *" value="" />
+                </div>
+                <div class="input-group mb-3">
+                    <input type="button" class="btnSubmit" value="Login" onclick="logMeIn()" />
+                </div>
+                <div class="input-group mb-3">
+                    <a href="#" class="ForgetPwd">Forget Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</form>
+<script type="text/javascript" src="/scripts/core/popper.min.js"></script>
+<script type="text/javascript" src="/scripts/core/bootstrap-5.min.js"></script>
+</body>
+</html>
